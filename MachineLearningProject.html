@@ -95,9 +95,9 @@ ValidationSet &lt;- training[-inTrain,]</code></pre>
 </div>
 <div id="model-development" class="section level2">
 <h2>Model Development</h2>
-<p>Two kinds of models are evaluated: Random Forest and Naive Bayes. In order to reduce the out of sample errors, 6-fold cross validation is used when these two models are trained.</p>
+<p>Two kinds of models are evaluated: Random Forest and Naive Bayes. In order to reduce the out of sample errors, 10-fold cross validation is used when these two models are trained.</p>
 <pre class="r"><code># k-fold Cross Validation
-train_control &lt;- trainControl(method=&quot;cv&quot;, number=6)
+train_control &lt;- trainControl(method=&quot;cv&quot;, number=10)
 # Random forest model 
 model_rf &lt;- train(classe ~ ., data=trainingSet, method=&quot;rf&quot;, trControl=train_control)</code></pre>
 <pre><code>## Loading required package: randomForest</code></pre>
@@ -117,7 +117,7 @@ model_nb &lt;- train(classe ~ ., data=trainingSet, method=&quot;nb&quot;, trCont
 cm_rf &lt;- confusionMatrix(ValidationSet$classe, predict_rf)
 predict_nb &lt;- predict(model_nb, ValidationSet)
 cm_nb &lt;- confusionMatrix(ValidationSet$classe, predict_nb)</code></pre>
-<p>As we can see, Random Forest model performed better than the Naive Bayes Model with an accuracy 0.9926933 of Random Forest and 0.7276126 of Naive Bayes Model. Thus, Random Forests model is choosen for the final model.</p>
+<p>As we can see, Random Forest model performed better than the Naive Bayes Model with an accuracy 0.9928632 of Random Forest and 0.7276126 of Naive Bayes Model. Thus, Random Forests model is choosen for the final model.</p>
 <p>Finally, using the Random Forest Model, the prediction on the testing data set is made.</p>
 <pre class="r"><code>predict_test &lt;- predict(model_rf, testing)
 predict_test</code></pre>
