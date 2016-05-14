@@ -64,7 +64,7 @@ cm_nb <- confusionMatrix(ValidationSet$classe, predict_nb)
 ```
 As we can see, Random Forest model performed better than the Naive Bayes Model with an accuracy `r cm_rf$overall[[1]]` of Random Forest and `r cm_nb$overall[[1]]` of Naive Bayes Model. Thus, Random Forests model is choosen for the final model.  
 
-Typically, the out of sample error is expected to be larger than the in sample error since it is constituted by the new observations not belonging to the training sample. However, the final Random Forest Model is developed with the 10 fold cross validation. Therefore, the out of sample error is estimated to be `r 1-cm_rf$overall[[1]]`.    
+Typically, the out of sample error is expected to be larger than the in sample error since it is constituted by the new observations not belonging to the training sample. However, the final Random Forest Model is validated with the 10 fold cross validation which evaluates the  model on the independent sets, so here the out of sample error could be estimated as `r 1-cm_rf$overall[[1]]`.    
 
 Finally, using the Random Forest Model, the prediction on the testing data set is made.  
 ```{r, warning=FALSE}

@@ -118,6 +118,7 @@ cm_rf &lt;- confusionMatrix(ValidationSet$classe, predict_rf)
 predict_nb &lt;- predict(model_nb, ValidationSet)
 cm_nb &lt;- confusionMatrix(ValidationSet$classe, predict_nb)</code></pre>
 <p>As we can see, Random Forest model performed better than the Naive Bayes Model with an accuracy 0.9928632 of Random Forest and 0.7276126 of Naive Bayes Model. Thus, Random Forests model is choosen for the final model.</p>
+<p>Typically, the out of sample error is expected to be larger than the in sample error since it is constituted by the new observations not belonging to the training sample. However, the final Random Forest Model is validated with the 10 fold cross validation which evaluates the model on the independent sets, so here the out of sample error could be estimated as 0.0071368.</p>
 <p>Finally, using the Random Forest Model, the prediction on the testing data set is made.</p>
 <pre class="r"><code>predict_test &lt;- predict(model_rf, testing)
 predict_test</code></pre>
